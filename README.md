@@ -1,11 +1,11 @@
 # Next.js Boilerplate
 
-A modern full-stack boilerplate built with Next.js, Prisma, and PostgreSQL — featuring authentication and user management out of the box.
+A modern full-stack boilerplate built with Next.js, Drizzle ORM, and PostgreSQL — featuring authentication and user management out of the box.
 
 ## Tech Stack
 
 - **Framework**: Next.js (App Router)
-- **Database ORM**: Prisma
+- **Database ORM**: Drizzle ORM
 - **Database**: PostgreSQL
 - **Auth**: NextAuth.js
 - **Styling**: Tailwind CSS + shadcn/ui
@@ -36,21 +36,15 @@ A modern full-stack boilerplate built with Next.js, Prisma, and PostgreSQL — f
 | `pnpm lint`          | Run ESLint                                |
 | `pnpm format`        | Auto-format code with Prettier            |
 
-### Database (Prisma)
+### Database (Drizzle)
 
-| Command                  | Description                                                    |
-| ------------------------ | -------------------------------------------------------------- |
-| `pnpm db:generate`       | Generate Prisma Client from schema                             |
-| `pnpm db:push`           | Push schema changes to the DB without migrations (prototyping) |
-| `pnpm db:pull`           | Pull the current DB schema into `schema.prisma`                |
-| `pnpm db:studio`         | Open Prisma Studio (visual DB browser)                         |
-| `pnpm db:migrate`        | Create a new migration and apply it (development)              |
-| `pnpm db:migrate:deploy` | Apply all pending migrations (production/CI)                   |
-| `pnpm db:migrate:status` | Check which migrations have been applied                       |
-| `pnpm db:migrate:reset`  | Drop DB, re-apply all migrations, and re-seed ⚠️ destructive   |
-| `pnpm db:seed`           | Run the seed script (`prisma/seed.ts`)                         |
-| `pnpm db:validate`       | Validate the Prisma schema file                                |
-| `pnpm db:format`         | Auto-format the Prisma schema file                             |
+| Command            | Description                                                    |
+| ------------------ | -------------------------------------------------------------- |
+| `pnpm db:generate` | Generate database migrations from schema                       |
+| `pnpm db:push`     | Push schema changes directly to the DB (good for prototyping)  |
+| `pnpm db:studio`   | Open Drizzle Studio (visual DB browser)                        |
+| `pnpm db:migrate`  | Apply pending migrations to the database                       |
+| `pnpm db:seed`     | Run the seed script (`db/seed.ts`)                             |
 
 ---
 
@@ -76,7 +70,7 @@ Fill in the required values in `.env`.
 pnpm db:migrate
 ```
 
-### 4. Generate Prisma Client
+### 4. Create initial migration
 
 ```bash
 pnpm db:generate
@@ -104,7 +98,7 @@ pnpm dev
    ```bash
    docker-compose up -d --build
    ```
-   > **Note:** Database migrations (`prisma migrate deploy`) run automatically on container startup.
+   > **Note:** Database migrations run automatically on container startup.
 
 ---
 
@@ -121,9 +115,9 @@ app/
   forms/           # Zod schemas for forms
 config/            # App config, routes, menu, env
 components/        # Shared UI components
+db/                # Drizzle schema, connection config, and seed
 hooks/             # TanStack Query hooks
   users/
 lib/               # Utilities and helpers
-prisma/            # Prisma schema and seed
 types/             # Shared TypeScript types
 ```
