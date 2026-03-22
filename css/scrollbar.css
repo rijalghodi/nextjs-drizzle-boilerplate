@@ -1,0 +1,64 @@
+/* ===== Base variables ===== */
+:root {
+  --sb-size: 12px;
+  --sb-radius: 10px;
+
+  --sb-track: var(--color-accent);
+  --sb-thumb: var(--color-muted-foreground);
+  --sb-thumb-hover: var(--color-foreground);
+  --sb-thumb-active: var(--color-foreground);
+}
+
+/* ===== Firefox ===== */
+* {
+  scrollbar-width: thin; /* auto | thin | none */
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+/* ===== WebKit browsers ===== */
+*::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-radius: var(--sb-radius);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 2px solid var(--sb-track); /* creates padding effect */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--sb-thumb-active);
+}
+
+/* Corner where vertical + horizontal meet */
+*::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+
+/* Optional buttons (rarely visible in modern UIs) */
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Prevent layout shift when scrollbar appears (modern browsers) */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Only style specific container instead of global */
+.my-scroll {
+  overflow: auto;
+}
+.my-scroll::-webkit-scrollbar {
+  width: 10px;
+}

@@ -1,0 +1,19 @@
+/* Tailwind Core */
+@import "tailwindcss";
+
+/* ReUI Configs */
+@import "./globals.css";
+
+/** Global Styles **/
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* Metronic Components  */
+@import "./scrollbar.css";
+
+/** Dark/Light Theme Variant **/
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:not(.dark *));
