@@ -5,7 +5,7 @@ import { booleanSchema } from "../lib/zod-schema";
 export const env = createEnv({
   server: {
     NEXTAUTH_SECRET: z.string().nonempty().default("super_secret_key"),
-    NEXTAUTH_URL: z.string().optional(),
+    NEXTAUTH_URL: z.string().optional().default("http://localhost:3000"),
 
     // Database
     DB_PROTOCOL: z.string().nonempty().default("postgresql"),
